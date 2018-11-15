@@ -1,6 +1,7 @@
 *
 !/**/
 !*.*
+!Makefile
 *.o
 *.gcno
 *.gcda
