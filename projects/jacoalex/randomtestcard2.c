@@ -11,7 +11,8 @@ int main(){
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            		 sea_hag, tribute, smithy};
 
-	for (unsigned int i; i < NUM_ITERATIONS; i++)
+    unsigned int i;
+	for (i = 0; i < NUM_ITERATIONS; i++)
 	{
 		// passing -1 causes the random number gen to go off of current time
 		initializeGame(NUM_PLAYERS, k, -1, &state);
