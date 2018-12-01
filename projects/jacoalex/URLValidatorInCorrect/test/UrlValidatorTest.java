@@ -67,14 +67,28 @@ public class UrlValidatorTest extends TestCase {
    public void testYourFirstPartition()
    {
       UrlValidator urlVal = new UrlValidator(null, null, 1);
-      assertTrue(urlVal.isValid("http://aurl.org"));
-      assertTrue(urlVal.isValid("ftp://oregonstate.edu"));
+      String[] schemes = { "Http", "ftps", "FTPS", "https", "xxtp" };
+
+      for (String scheme : schemes)
+      {
+         assertTrue(urlVal.isValid(scheme + "://validurl.com/test?q=1"));
+      }
    }
    
    public void testYourSecondPartition(){
       UrlValidator urlVal = new UrlValidator(null, null, 1);
-      assertTrue(urlVal.isValid("ftp://anotherurl.com"));
-   }
+      String[] athorities = {
+              "google.com",
+              "facebook.com",
+              "validurl.uk.org",
+              "sub.sub.top.tippy.top"
+      }
+
+      for (String athority : athorities)
+      {
+         assertTrue(urlVal.isValid("http://" + athority + "/test?q=1"));
+      }
+}
    
    public void testIsValid()
    {
