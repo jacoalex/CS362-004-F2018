@@ -72,19 +72,20 @@ randomtestresults: randomtestcard1 randomtestcard2 randomtestadventurer
 testHelper.o: dominion.o testHelper.c
 	gcc -c testHelper.c -g $(CFLAGS)
 
-unittest1: testHelper.o unittest1.c
-	gcc -o unittest1 -g unittest1.c dominion.o rngs.o testHelper.o $(CFLAGS)
+cardtest1: testHelper.o cardtest1.c
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o testHelper.o $(CFLAGS)
 
-unittest2: testHelper.o unittest2.c
-	gcc -o unittest2 -g unittest2.c dominion.o rngs.o testHelper.o $(CFLAGS)
+cardtest2: testHelper.o cardtest2.c
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o testHelper.o $(CFLAGS)
 
-unittest3: testHelper.o unittest3.c
-	gcc -o unittest3 -g unittest3.c dominion.o rngs.o testHelper.o $(CFLAGS)
+cardtest3: testHelper.o cardtest3.c
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o testHelper.o $(CFLAGS)
 
-unittest4: testHelper.o unittest4.c
-	gcc -o unittest4 -g unittest4.c dominion.o rngs.o testHelper.o $(CFLAGS)
+cardtest4: testHelper.o cardtest4.c
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o testHelper.o $(CFLAGS)
 
-allTests: unittest1 unittest2 unittest3 unittest4
+allTests: cardtest1 cardtest2 cardtest3 cardtest4
+
 
 RESULT_FILE = unittestresults.out
 # remove -n flag to generate dominion.c.gcov file
@@ -97,14 +98,13 @@ unittestresults: allTests
 	echo >> $(RESULT_FILE)
 
 	echo "#######################################" >> $(RESULT_FILE)
-	./unittest1 >> $(RESULT_FILE)
+	./cardtest1 >> $(RESULT_FILE)
 	echo "#######################################" >> $(RESULT_FILE)
-	./unittest2 >> $(RESULT_FILE)
+	./cardtest2 >> $(RESULT_FILE)
 	echo "#######################################" >> $(RESULT_FILE)
-	./unittest3 >> $(RESULT_FILE)
+	./cardtest3 >> $(RESULT_FILE)
 	echo "#######################################" >> $(RESULT_FILE)
-	./unittest4 >> $(RESULT_FILE)
-	echo "#######################################" >> $(RESULT_FILE)
+	./cardtest4 >> $(RESULT_FILE)
 	echo >> $(RESULT_FILE)
 
 	echo "############" >> $(RESULT_FILE)
