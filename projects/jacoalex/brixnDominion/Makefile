@@ -84,20 +84,7 @@ unittest3: testHelper.o unittest3.c
 unittest4: testHelper.o unittest4.c
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o testHelper.o $(CFLAGS)
 
-cardtest1: testHelper.o cardtest1.c
-	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o testHelper.o $(CFLAGS)
-
-cardtest2: testHelper.o cardtest2.c
-	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o testHelper.o $(CFLAGS)
-
-cardtest3: testHelper.o cardtest3.c
-	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o testHelper.o $(CFLAGS)
-
-cardtest4: testHelper.o cardtest4.c
-	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o testHelper.o $(CFLAGS)
-
-allTests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-
+allTests: unittest1 unittest2 unittest3 unittest4
 
 RESULT_FILE = unittestresults.out
 # remove -n flag to generate dominion.c.gcov file
@@ -118,13 +105,6 @@ unittestresults: allTests
 	echo "#######################################" >> $(RESULT_FILE)
 	./unittest4 >> $(RESULT_FILE)
 	echo "#######################################" >> $(RESULT_FILE)
-	./cardtest1 >> $(RESULT_FILE)
-	echo "#######################################" >> $(RESULT_FILE)
-	./cardtest2 >> $(RESULT_FILE)
-	echo "#######################################" >> $(RESULT_FILE)
-	./cardtest3 >> $(RESULT_FILE)
-	echo "#######################################" >> $(RESULT_FILE)
-	./cardtest4 >> $(RESULT_FILE)
 	echo >> $(RESULT_FILE)
 
 	echo "############" >> $(RESULT_FILE)
@@ -133,19 +113,6 @@ unittestresults: allTests
 	echo >> $(RESULT_FILE)
 
 	gcov dominion.c $(GCOV_ARGS) >> $(RESULT_FILE)
-
-
-	# Decided not to include gcov file because it just clogged up the results.
-	# All of the data that's important the gcov program output to stdout
-	# To re-enable remove the -n flag in the GCOV_ARGS var and uncomment the line below
-
-	#echo >> $(RESULT_FILE)
-	#echo "#############" >> $(RESULT_FILE)
-	#echo "  GCOV File  " >> $(RESULT_FILE)
-	#echo "#############" >> $(RESULT_FILE)
-	#echo >> $(RESULT_FILE)
-
-	#cat dominion.c.gcov >> $(RESULT_FILE)
 
 cleanTests:
 	rm -f randomtestcard1 randomtestcard2 randomtestadventurer
